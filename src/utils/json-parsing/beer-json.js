@@ -7,6 +7,7 @@ export const beersList = (beers) => {
             'img':(beer['labels']) ? beer['labels']['medium'] : "https://deanhume.github.io/beer/images/brewerydb-logo.png", 
             'categoryId':beer.style.categoryId,
             'name':beer.name,
+            "abv":parseFloat(beer.abv),
         };
         beersList.push(beerObject);
     });

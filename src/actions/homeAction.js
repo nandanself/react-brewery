@@ -32,7 +32,8 @@ export const searchBeerSuccess = (response) => {
   return {
     type: SEARCH_BEER_SUCCESS,
     beers: (response.data !== undefined) ? beersList(response.data) : [],
-    currentPage:response.currentPage + 1,
+    currentPage : response.currentPage + 1,
+    resultFound : (response.data !== undefined) ? true : false,
   };
 }
 

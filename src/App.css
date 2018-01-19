@@ -116,7 +116,7 @@ button{
 }
 
 select {
-	width: 100px;
+	width: auto;
 	height: 42px;
 	background: black;
 	color: white;
@@ -154,6 +154,7 @@ nav  input{
 	background:black;
 	border-width: 1px;
 	outline-color: transparent;
+	outline: 0px;
 }
 
 nav  button {
@@ -182,12 +183,32 @@ nav  button {
 	object-fit:contain;
 }
 
+.components-section {
+	margin-top:80px;
+	width:100%;
+	height:200px;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.components-section p{
+	font-size: 36px;
+	color:black;
+}
+
+.beer-grid-wrapper{
+	width:calc(100% - 80px);
+	height:auto;
+	background: #e4e3e3;
+	display: inline-block;
+	border:1px solid grey;
+}
+
 .beer-grid {
 	width:100%;
 	height:auto;
 	background: #e4e3e3;
-	margin-top:60px;
-	padding: 20px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -234,6 +255,29 @@ nav  button {
 	color:black;
 	margin-top:20px;
 	background:#0d98e0;
+}
+
+.nav-filter {
+	width:100%;
+	height: 60px;
+	display: flex;
+	background:white;
+	margin-bottom: 20px;
+	border-bottom: 1px solid grey;
+}
+
+.nav-filter select{
+	height: 100%;
+	width:230px;
+	background: transparent;
+	color:black;
+	border:0px;
+	border-right:1px solid grey;
+}
+
+.not-found{
+	color:black;
+	font-size: 24px;
 }
 
 
