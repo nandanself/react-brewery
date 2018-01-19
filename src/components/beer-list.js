@@ -3,6 +3,7 @@ import { LoaderSpinner } from "./loading-spinner";
 import { BeerCard } from "./beer-card"; 
 
 export const BeerList  = ({beers, isLoading}) => {
+
     let loading = () => {
         if (isLoading){
             return <LoaderSpinner/>

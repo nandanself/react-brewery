@@ -83,7 +83,6 @@ button{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	position: absolute;
 }
 
 .spinner > div {
@@ -116,14 +115,16 @@ button{
 	40% { -webkit-transform: scale(1.0); transform: scale(1.0);}
 }
 
-select{
+select {
 	width: 100px;
-	height: 43px;
+	height: 42px;
 	background: black;
 	color: white;
 	border-radius: 0px;
+	padding: 10px;
+	font-size: 18px;
+	text-transform: uppercase;
 }
-
 
 nav{
 	width:100%;
@@ -152,6 +153,7 @@ nav  input{
 	color:white;
 	background:black;
 	border-width: 1px;
+	outline-color: transparent;
 }
 
 nav  button {
@@ -183,7 +185,7 @@ nav  button {
 .beer-grid {
 	width:100%;
 	height:auto;
-	background:red;
+	background: #e4e3e3;
 	margin-top:60px;
 	padding: 20px;
 	display: flex;
@@ -202,6 +204,7 @@ nav  button {
 
 .beer-card  .beer-img{
 	width:100%;
+	height:250px;
 	background:transparent;
 	overflow: hidden;
 }
@@ -222,6 +225,15 @@ nav  button {
 .beer-card .beer-details .name{
 	font-size:18px;
 	color:black;
+}
+
+.loadMore {
+	width:140px;
+	height: 40px;
+	border-radius:50px;
+	color:black;
+	margin-top:20px;
+	background:#0d98e0;
 }
 
 

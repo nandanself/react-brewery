@@ -7,10 +7,10 @@ export const SEARCH_BEER_SUCCESS = "SEARCH_BEER_SUCCESS";
 export const SEARCH_BEER_LOADING = "SEARCH_BEER_LOADING";
 
 
-export const searchBeer = (query) => {
+export const searchBeer = (query,page) => {
   return (dispatch) => {
     dispatch(searchBeerLoading());
-    let url = `${BASE_URL}${query}`;
+    let url = `${BASE_URL}${query}&page=p=${page}`;
     return Axios.get(url)
       .then(response => {
         dispatch(searchBeerSuccess(response.data))
@@ -31,7 +31,8 @@ export const searchBeerLoading = () => {
 export const searchBeerSuccess = (response) => {
   return {
     type: SEARCH_BEER_SUCCESS,
-    beers: (response.data !== undefined) ? beersList(response.data) : []
+    beers: (response.data !== undefined) ? beersList(response.data) : [],
+    currentPage:response.currentPage + 1,
   };
 }
 

@@ -6,32 +6,86 @@ import { BeerList } from "../components/beer-list";
 import {NavBar} from "../components/navbar";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      optionsValue:[{'value':"name=",'label':'name'},{'value':"styleId=",'label':'style'}],
+      searchType:"name=",
+      searchValue:null,
+      page:props.currentPage,
+      beers:[],
+    };
+    this.changeSearhType = this.changeSearhType.bind(this);
+    this.search = this.search.bind(this);
+    this.loadMoreData = this.loadMoreData.bind(this);
+  };
 
-
+  componentWillReceiveProps(nextProps){
+    if(this.props.beers !== nextProps.beers){
+      this.setState({
+        'beers':[...this.state.beers, ...nextProps.beers]  
+      });
+    }
+  }
   
+  changeSearhType(searchType){
+    this.setState({
+      'searchType':searchType,
+    });
+  };
+
+  search(value){
+    this.setState({
+      'beers':[],
+      'searchValue':value,
+    });
+    if (value) {
+        let query = `${this.state.searchType}${value}`;
+        let page = 1;
+        this.props.searchBeer(query,page);
+    }
+  };
+
+  loadMoreData(){
+    let value = this.state.searchValue;
+    let searchType = this.state.searchType;  
+    let query = `${searchType}${value}`;
+    let page =this.props.currentPage;
+    this.props.searchBeer(query,page);
+  };
+
   render() {
-    let { beers, searchBeer, isLoading } = this.props;
+    let showLoadMoreButton = () => {
+      if (this.props.beers.length > 49){
+          return (
+              <button className="loadMore" onClick={ this.loadMoreData }>Load More</button>
+          )
+      }
+    };
+    let { isLoading } = this.props;
+    let { beers } = this.state;
     return (
       <div className="search-page">
-        <NavBar searchBeer={searchBeer}/>
-        <BeerList beers={beers} isLoading={isLoading}/>       
+        <NavBar options={this.state } changeSearhType={this.changeSearhType} searchBeer={this.search}/>
+        <BeerList beers={beers} isLoading={isLoading}/>
+        {showLoadMoreButton()}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
     beers: state.HomeReducer.beers,
     isLoading: state.HomeReducer.isLoading,
+    currentPage:state.HomeReducer.currentPage,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      searchBeer: (name) => searchBeer(name),
+      searchBeer: (name,page) => searchBeer(name,page),
     },
     dispatch
   )

@@ -2,7 +2,8 @@ import * as ActionTypes from '../actions/homeAction';
 
 const initialState = {
   isLoading:false,
-  beers:[]
+  beers:[],
+  currentPage:1,
 }
 
 export const HomeReducer = (state=initialState,action) => {
@@ -13,12 +14,13 @@ export const HomeReducer = (state=initialState,action) => {
           ...state,
           beers:action.beers,
           isLoading:false,
+          currentPage:action.currentPage,
       }
 
     case ActionTypes.SEARCH_BEER_LOADING:
       return {
         ...state,
-        isLoading:action.isLoading
+        isLoading:action.isLoading, 
       }
 
     default:
